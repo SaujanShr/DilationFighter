@@ -2,7 +2,6 @@ extends "Actor.gd"
 func _ready():
 	pass
 
-
 func _process(delta):
 		#if attacking, dont do other animations
 	if (in_combo):
@@ -16,6 +15,12 @@ func _process(delta):
 			state_machine.travel("idle")
 		elif abs(direction) > 0:
 			state_machine.travel("run")
+	
+	
+
+
+
+
 #on hit
 func _on_AttackArea_area_entered(area):
 	if not area.get_parent() == self: #checks it hasn't entered itself

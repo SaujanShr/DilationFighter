@@ -1,10 +1,7 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://game/Assets/Tilesets/oak_woods_tileset.png" type="Texture" id=1]
-[ext_resource path="res://game/Assets/Backgrounds/background_layer_3.png" type="Texture" id=2]
-[ext_resource path="res://game/Assets/Backgrounds/background_layer_1.png" type="Texture" id=3]
-[ext_resource path="res://game/Assets/Backgrounds/background_layer_2.png" type="Texture" id=4]
-[ext_resource path="res://game/Assets/Backgrounds/unknown.png" type="Texture" id=5]
+[ext_resource path="res://game/Assets/Backgrounds/Trees_Background.png" type="Texture" id=2]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -76,31 +73,46 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 0/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 544, 64 )
+extents = Vector2( 624, 64 )
 
 [node name="Map 1" type="Node2D"]
 
-[node name="BackgroundLayer1" type="Sprite" parent="."]
-visible = false
-position = Vector2( 515.556, 290 )
-scale = Vector2( 3.22222, 3.22222 )
-texture = ExtResource( 3 )
+[node name="Sprites" type="Node2D" parent="."]
+scale = Vector2( 2.08, 3.08 )
 
-[node name="BackgroundLayer2" type="Sprite" parent="."]
-visible = false
-position = Vector2( 515.556, 290 )
-scale = Vector2( 3.22222, 3.22222 )
-texture = ExtResource( 4 )
-
-[node name="BackgroundLayer3" type="Sprite" parent="."]
-visible = false
-position = Vector2( 515, 290 )
-scale = Vector2( 3.22222, 3.22222 )
+[node name="Sprite0" type="Sprite" parent="Sprites"]
+position = Vector2( 253.846, 92.8961 )
+scale = Vector2( 2, 1.5 )
 texture = ExtResource( 2 )
+hframes = 5
+frame = 4
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 528, 224 )
-texture = ExtResource( 5 )
+[node name="Sprite1" type="Sprite" parent="Sprites"]
+position = Vector2( 253.846, 92.8961 )
+scale = Vector2( 2, 1.5 )
+texture = ExtResource( 2 )
+hframes = 5
+frame = 3
+
+[node name="Sprite2" type="Sprite" parent="Sprites"]
+position = Vector2( 253.846, 92.8961 )
+scale = Vector2( 2, 1.5 )
+texture = ExtResource( 2 )
+hframes = 5
+frame = 2
+
+[node name="Sprite3" type="Sprite" parent="Sprites"]
+position = Vector2( 254.327, 92.8571 )
+scale = Vector2( 2, 1.5 )
+texture = ExtResource( 2 )
+hframes = 5
+frame = 1
+
+[node name="Sprite4" type="Sprite" parent="Sprites"]
+position = Vector2( 253.846, 92.8961 )
+scale = Vector2( 2, 1.5 )
+texture = ExtResource( 2 )
+hframes = 5
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 6 )
@@ -115,7 +127,9 @@ format = 1
 tile_data = PoolIntArray( 1048573, 0, 4, 1048574, 0, 4, 1048575, 0, 4, 983040, 0, 4, 983041, 0, 4, 983042, 0, 4, 983043, 0, 4, 983044, 0, 4, 983045, 0, 4, 983046, 0, 4, 983047, 0, 4, 983048, 0, 4, 983049, 0, 4, 983050, 0, 4, 983051, 0, 4, 983052, 0, 4, 983053, 0, 4, 983054, 0, 4, 983055, 0, 4, 983056, 0, 4, 983057, 0, 4, 983058, 0, 4, 983059, 0, 4, 983060, 0, 4, 983061, 0, 4, 983062, 0, 4, 983063, 0, 4, 983064, 0, 4, 983065, 0, 4, 983066, 0, 4, 983067, 0, 4, 983068, 0, 4, 983069, 0, 4, 983070, 0, 4, 983071, 0, 4, 983072, 0, 4, 983073, 0, 4, 983074, 0, 4, 983075, 0, 4 )
 
 [node name="Floor" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2( 512, 544 )
+position = Vector2( 528, 544 )
 shape = SubResource( 7 )

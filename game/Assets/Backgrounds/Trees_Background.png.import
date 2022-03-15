@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/adventurer-hurt-01.png-51a45a86ab71a01b0cf9ce80f363c302.stex"
+path="res://.import/Trees_Background.png-bee3e642f75d47870decdba444b6a30d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/Assets/Character Sprites/Fighter1/Hurt/adventurer-hurt-01.png"
-dest_files=[ "res://.import/adventurer-hurt-01.png-51a45a86ab71a01b0cf9ce80f363c302.stex" ]
+source_file="res://game/Assets/Backgrounds/Trees_Background.png"
+dest_files=[ "res://.import/Trees_Background.png-bee3e642f75d47870decdba444b6a30d.stex" ]
 
 [params]
 
