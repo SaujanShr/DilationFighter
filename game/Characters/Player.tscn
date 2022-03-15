@@ -360,6 +360,7 @@ states/Run/node = SubResource( 9 )
 states/Run/position = Vector2( 491, 241 )
 transitions = [ "Idle", "Run", SubResource( 10 ), "Idle", "Attack1", SubResource( 11 ), "Attack1", "Idle", SubResource( 12 ), "Attack2", "Idle", SubResource( 14 ), "Run", "Idle", SubResource( 15 ), "Idle", "Attack2", SubResource( 18 ) ]
 start_node = "Idle"
+graph_offset = Vector2( -135, 11 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=17]
 
@@ -387,6 +388,7 @@ anims/Run = SubResource( 5 )
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="SwordCollision" type="CollisionPolygon2D" parent="AttackArea"]
+polygon = PoolVector2Array( 1, -6, 8, -9, 12, -15, 12, -22, 2, -31, -3, -31, -2, -34, 4, -36, 12, -36, 18, -33, 22, -29, 24, -24, 24, -17, 21, -10, 17, -6, 12, -4, 4, -4 )
 disabled = true
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://game/Assets/Tilesets/oak_woods_tileset.png" type="Texture" id=1]
 [ext_resource path="res://game/Assets/Backgrounds/background_layer_3.png" type="Texture" id=2]
 [ext_resource path="res://game/Assets/Backgrounds/background_layer_1.png" type="Texture" id=3]
 [ext_resource path="res://game/Assets/Backgrounds/background_layer_2.png" type="Texture" id=4]
+[ext_resource path="res://game/Assets/Backgrounds/unknown.png" type="Texture" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -80,19 +81,26 @@ extents = Vector2( 544, 64 )
 [node name="Map 1" type="Node2D"]
 
 [node name="BackgroundLayer1" type="Sprite" parent="."]
+visible = false
 position = Vector2( 515.556, 290 )
 scale = Vector2( 3.22222, 3.22222 )
 texture = ExtResource( 3 )
 
 [node name="BackgroundLayer2" type="Sprite" parent="."]
+visible = false
 position = Vector2( 515.556, 290 )
 scale = Vector2( 3.22222, 3.22222 )
 texture = ExtResource( 4 )
 
 [node name="BackgroundLayer3" type="Sprite" parent="."]
+visible = false
 position = Vector2( 515, 290 )
 scale = Vector2( 3.22222, 3.22222 )
 texture = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 528, 224 )
+texture = ExtResource( 5 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 6 )
