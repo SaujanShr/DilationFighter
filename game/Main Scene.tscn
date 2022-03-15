@@ -6,10 +6,13 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Map 1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 169, 240 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 1 )]
 position = Vector2( 432, 480 )
 
-[node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
-position = Vector2( -4, -181 )
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 426, 376 )
 current = true
+zoom = Vector2( 0.5, 0.5 )

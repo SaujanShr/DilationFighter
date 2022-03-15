@@ -226,7 +226,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ PoolVector2Array( 1, -6, 8, -9, 12, -15, 12, -22, 2, -31, -3, -31, -2, -34, 4, -36, 12, -36, 18, -33, 22, -29, 24, -24, 24, -17, 21, -10, 17, -6, 12, -4, 4, -4 ) ]
+"values": [ PoolVector2Array(  ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("AttackArea/SwordCollision:disabled")
@@ -369,7 +369,6 @@ script = ExtResource( 20 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -15.9961 )
-scale = Vector2( 0.998865, 0.999626 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, -10, 50, 60 )
@@ -388,7 +387,6 @@ anims/Run = SubResource( 5 )
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="SwordCollision" type="CollisionPolygon2D" parent="AttackArea"]
-polygon = PoolVector2Array( 1, -6, 8, -9, 12, -15, 12, -22, 2, -31, -3, -31, -2, -34, 4, -36, 12, -36, 18, -33, 22, -29, 24, -24, 24, -17, 21, -10, 17, -6, 12, -4, 4, -4 )
 disabled = true
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

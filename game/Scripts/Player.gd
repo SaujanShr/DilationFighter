@@ -2,10 +2,10 @@ extends KinematicBody2D
 
 onready var state_machine = $AnimationTree.get("parameters/playback")
 
-export var run_speed = 100
+export var run_speed = 200
 export var jump_force = 800
 export var gravity = 50
-export var terminal_v = 100
+export var terminal_v = 800
 var velocity_y = 0
 var motion
 
