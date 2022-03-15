@@ -99,7 +99,8 @@ scale = Vector2( 3.22222, 3.22222 )
 texture = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 528, 224 )
+position = Vector2( 528, 270 )
+scale = Vector2( 1.02381, 1.02381 )
 texture = ExtResource( 5 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -115,6 +116,8 @@ format = 1
 tile_data = PoolIntArray( 1048573, 0, 4, 1048574, 0, 4, 1048575, 0, 4, 983040, 0, 4, 983041, 0, 4, 983042, 0, 4, 983043, 0, 4, 983044, 0, 4, 983045, 0, 4, 983046, 0, 4, 983047, 0, 4, 983048, 0, 4, 983049, 0, 4, 983050, 0, 4, 983051, 0, 4, 983052, 0, 4, 983053, 0, 4, 983054, 0, 4, 983055, 0, 4, 983056, 0, 4, 983057, 0, 4, 983058, 0, 4, 983059, 0, 4, 983060, 0, 4, 983061, 0, 4, 983062, 0, 4, 983063, 0, 4, 983064, 0, 4, 983065, 0, 4, 983066, 0, 4, 983067, 0, 4, 983068, 0, 4, 983069, 0, 4, 983070, 0, 4, 983071, 0, 4, 983072, 0, 4, 983073, 0, 4, 983074, 0, 4, 983075, 0, 4 )
 
 [node name="Floor" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2( 512, 544 )

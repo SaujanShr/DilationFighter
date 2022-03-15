@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://game/Characters/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/Maps/Map 1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game/Characters/Enemy.tscn" type="PackedScene" id=3]
 
 [node name="Node2D" type="Node2D"]
 
@@ -9,10 +10,13 @@
 position = Vector2( 169, 240 )
 scale = Vector2( 0.5, 0.5 )
 
+[node name="Enemy" parent="." instance=ExtResource( 3 )]
+position = Vector2( 621, 480 )
+
 [node name="KinematicBody2D" parent="." instance=ExtResource( 1 )]
-position = Vector2( 432, 480 )
+position = Vector2( 499, 480 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 426, 376 )
+position = Vector2( 444, 396 )
 current = true
-zoom = Vector2( 0.5, 0.5 )
+zoom = Vector2( 0.4, 0.4 )
