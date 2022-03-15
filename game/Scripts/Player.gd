@@ -8,25 +8,36 @@ export var gravity = 50
 export var terminal_v = 800
 var velocity_y = 0
 var motion
+var direction
 
 var jump = false
-var attacking = false
+
+#variables for combos
+var in_combo = false
+export var time_till_next_input = 1
+var time = 0
+var current_attack = 0
+var previous_attack = 0
 
 func _ready():
 	pass
 
 func get_input():
 	var current = state_machine.get_current_node()
-	var direction = 0
+	direction = 0
 	motion = 0
 	
 	#attacks
-	if Input.is_action_just_pressed("attack_1"):
-		state_machine.travel("Attack1")
-		attacking = true
-	if Input.is_action_just_pressed("attack_2"):
-		state_machine.travel("Attack2")
-		attacking = true
+	if not current.begins_with("attack"):
+		if Input.is_action_just_pressed("light_attack"):
+			incr_combo()
+			if current_attack % 2 == 1:
+				state_machine.travel("attack_1")
+			else:
+				state_machine.travel("attack_2")
+		if Input.is_action_just_pressed("heavy_attack"):
+			incr_combo()
+			state_machine.travel("attack_2")
 	
 	#left and right and jump movement
 	if Input.is_action_pressed("move_left"):
@@ -38,17 +49,30 @@ func get_input():
 	direction_in_x(direction)
 	motion = direction * run_speed
 
+func _process(delta):
+		#if attacking, dont do other animations
+	if (in_combo):
+		time -= delta
+		if (time < 0):
+			time = time_till_next_input
+			in_combo = false
+			current_attack = 0
+	else:
+		if direction == 0:
+			state_machine.travel("idle")
+		elif abs(direction) > 0:
+			state_machine.travel("run")
+	
+	
+
 func _physics_process(delta):
 	get_input()
-	#if attacking, dont do other animations
-	if attacking == false:
-		if motion == 0:
-			state_machine.travel("Idle")
-		elif abs(motion) > 0:
-			state_machine.travel("Run")
-	else:
-		attacking = true
 		
+	#if in attack, can't move
+	if in_combo:
+		motion = 0
+		jump = false
+	
 	motion = move_and_slide(Vector2(motion, velocity_y), Vector2(0, -1))
 	
 	#gravity and jumping
@@ -68,3 +92,9 @@ func direction_in_x(direction):
 		$Sprite.scale.x = direction
 		$CollisionPolygon2D.scale.x = direction
 		$AttackArea.scale.x = direction
+
+#handles combos
+func incr_combo():
+	in_combo = true
+	current_attack += 1
+	time = time_till_next_input
