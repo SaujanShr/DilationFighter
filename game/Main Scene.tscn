@@ -11,10 +11,11 @@ position = Vector2( 169, 240 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 621, 480 )
+position = Vector2( 504, 480 )
+facing = -1
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 1 )]
-position = Vector2( 499, 480 )
+position = Vector2( 320, 441 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 444, 396 )
