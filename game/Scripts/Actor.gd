@@ -9,7 +9,7 @@ export var friction = 50
 export var air_resistance = 25
 export var terminal_v = 800
 export var knockback_taken = 500 #this will be an x direction impulse
-var store_excess = 0
+export var health = 100
 var excess_x = 0 #deals with any impulses sent in the x direction
 var velocity_y = 0
 var velocity_x = 0
@@ -113,13 +113,10 @@ func incr_combo():
 	in_combo = true
 	current_attack += 1
 	time = time_till_next_input
-func _on_AttackArea_body_entered(body):
-	if !body.is_in_group(player):
-		print(body.name)
-func _on_Hurtbox_area_entered(area):
-	if not area.get_parent() == self: #checks it hasn't entered itself
-		print(area.name)
 
 #handles knockback and damage
 func gotHurt(var hurtDirection):
 	excess_x = knockback_taken * hurtDirection
+	$AnimationPlayer.play("flash")
+	health -= 10
+	print(knockback_taken)

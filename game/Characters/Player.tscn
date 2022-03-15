@@ -1,12 +1,15 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://game/Assets/Character Sprites/Fighter1/Idle/adventurer-idle-00.png" type="Texture" id=1]
 [ext_resource path="res://game/Assets/Character Sprites/Fighter1/Attack/adventurer-attack1-01.png" type="Texture" id=2]
 [ext_resource path="res://game/Assets/Character Sprites/Fighter1/Attack/adventurer-attack1-03.png" type="Texture" id=3]
+[ext_resource path="res://game/Assets/Character Sprites/Fighter1/Hurt/adventurer-hurt-01.png" type="Texture" id=4]
 [ext_resource path="res://game/Assets/Character Sprites/Fighter1/Attack/adventurer-attack2-02.png" type="Texture" id=5]
 [ext_resource path="res://game/Assets/Character Sprites/Fighter1/Attack/adventurer-attack2-03.png" type="Texture" id=6]
+[ext_resource path="res://game/Assets/Character Sprites/Fighter1/Hurt/adventurer-hurt-00.png" type="Texture" id=7]
 [ext_resource path="res://game/Assets/Character Sprites/Fighter1/Attack/adventurer-attack2-04.png" type="Texture" id=8]
 [ext_resource path="res://game/Assets/Character Sprites/Fighter1/Attack/adventurer-attack2-05.png" type="Texture" id=9]
+[ext_resource path="res://game/Assets/Character Sprites/Fighter1/Hurt/adventurer-hurt-02.png" type="Texture" id=10]
 [ext_resource path="res://game/Assets/Character Sprites/Fighter1/Run/adventurer-run-01.png" type="Texture" id=11]
 [ext_resource path="res://game/Assets/Character Sprites/Fighter1/Attack/adventurer-attack1-04.png" type="Texture" id=12]
 [ext_resource path="res://game/Assets/Character Sprites/Fighter1/Run/adventurer-run-00.png" type="Texture" id=13]
@@ -60,7 +63,7 @@ states/run/node = SubResource( 21 )
 states/run/position = Vector2( 433, 215 )
 transitions = [ "idle", "run", SubResource( 22 ), "run", "idle", SubResource( 23 ), "idle", "attack_1", SubResource( 24 ), "idle", "attack_2", SubResource( 25 ), "attack_1", "idle", SubResource( 26 ), "attack_2", "idle", SubResource( 27 ) ]
 start_node = "idle"
-graph_offset = Vector2( -127, 19 )
+graph_offset = Vector2( 76.4698, 43.0141 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=17]
 
@@ -174,6 +177,18 @@ tracks/8/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/9/type = "value"
+tracks/9/path = NodePath("Sprite:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "attack_1"
@@ -279,6 +294,55 @@ tracks/3/keys = {
 "values": [ Vector2( -0.018301, -17.5034 ) ]
 }
 
+[sub_resource type="Animation" id=37]
+resource_name = "attack_up"
+
+[sub_resource type="Animation" id=36]
+resource_name = "flash"
+length = 0.15
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 3, 3, 3, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=38]
+resource_name = "hurt"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 10 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hurtbox/HurtCollision:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ PoolVector2Array( -5, 0, -8, -9, -9, -17, -2, -25, 5, -23, 8, -9, 6, 0 ), PoolVector2Array( -5, 0, -8, -9, -9, -17, -2, -21, 1, -25, 6, -23, 8, -9, 6, 0 ), PoolVector2Array( -5, 0, -8, -9, -9, -17, -2, -21, 1, -25, 6, -23, 8, -9, 6, 0 ) ]
+}
+
 [sub_resource type="Animation" id=3]
 resource_name = "idle"
 loop = true
@@ -329,6 +393,18 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ PoolVector2Array(  ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -403,13 +479,15 @@ one_way_collision_margin = 0.0
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 16 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/playback = SubResource( 17 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 4 )
 anims/attack_1 = SubResource( 1 )
 anims/attack_2 = SubResource( 2 )
+anims/attack_up = SubResource( 37 )
+anims/flash = SubResource( 36 )
+anims/hurt = SubResource( 38 )
 anims/idle = SubResource( 3 )
 anims/run = SubResource( 5 )
 

@@ -19,11 +19,12 @@ func _process(delta):
 #on hit
 func _on_AttackArea_area_entered(area):
 	if not area.get_parent() == self: #checks it hasn't entered itself
-		print("hurt: " + area.get_parent().name)
+		#print("hurt: " + area.get_parent().name)
+		pass
 
 
 #on hurt
 func _on_Hurtbox_area_entered(area):
 	if not area.get_parent() == self: #checks it hasn't entered itself
-		print("hit by: " + area.get_parent().name)
+		#print("hit by: " + area.get_parent().name)
 		gotHurt(area.scale.x)
