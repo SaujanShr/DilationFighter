@@ -24,9 +24,6 @@ func _process(delta):
 	
 	
 
-
-
-
 #on hit
 func _on_AttackArea_area_entered(area):
 	if not area.get_parent() == self: #checks it hasn't entered itself

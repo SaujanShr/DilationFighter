@@ -84,18 +84,18 @@ func get_input(grounded):
 	var current = state_machine.get_current_node()
 	
 	#left and right and jump movement
-	if Input.is_action_pressed(player + "move_left"):
+	if Input.is_action_pressed(player + "_move_left"):
 		direction = -1
-	if Input.is_action_pressed(player + "move_right"):
+	if Input.is_action_pressed(player + "_move_right"):
 		direction = 1
-	if Input.is_action_just_pressed(player + "jump"):
+	if Input.is_action_just_pressed(player + "_jump"):
 		jump = true
 	direction_in_x(direction)
 
 	#attacks
 	if not current.begins_with("attack"):
 		attacking = false
-		if Input.is_action_just_pressed(player + "light_attack"):
+		if Input.is_action_just_pressed(player + "_light_attack"):
 			if grounded:
 				if direction == 0:
 					incr_combo()
@@ -106,7 +106,7 @@ func get_input(grounded):
 					excess_x = 350 * direction #lunge
 			else:
 				state_machine.travel("attack_air")
-		if Input.is_action_just_pressed(player + "heavy_attack"):
+		if Input.is_action_just_pressed(player + "_heavy_attack"):
 			if grounded:
 				incr_combo()
 				state_machine.travel("attack_2")

@@ -15,12 +15,10 @@ script = ExtResource( 5 )
 
 [node name="Player" parent="." groups=["p1"] instance=ExtResource( 1 )]
 position = Vector2( 90, 240 )
-direction = 1
 player = "p1"
 
 [node name="Enemy" parent="." groups=["p2"] instance=ExtResource( 3 )]
 position = Vector2( 521, 238 )
-direction = -1
 player = "p2"
 
 [node name="Camera2D" type="Camera2D" parent="."]
