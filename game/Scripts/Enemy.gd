@@ -24,6 +24,9 @@ func _process(delta):
 	
 	
 
+
+
+
 #on hit
 func _on_AttackArea_area_entered(area):
 	if not area.get_parent() == self: #checks it hasn't entered itself
@@ -44,3 +47,7 @@ func _on_Hurtbox_area_entered(area):
 		var resultantMag = Vector2(x_mag, y_mag)
 		gotHurt(resultantMag)
 
+
+
+func _on_DashTimer_timeout():
+	$Hurtbox.monitoring = true

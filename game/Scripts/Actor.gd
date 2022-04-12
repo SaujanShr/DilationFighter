@@ -1,11 +1,12 @@
 extends KinematicBody2D
 
 onready var state_machine = $AnimationTree.get("parameters/playback")
+onready var state_machine_cond = $AnimationTree.get("parameters/conditions")
 
 export var run_speed = 200
 export var jump_force = 650
 export var gravity = 20
-export var friction = 50
+export var friction = 20
 export var air_resistance = 15
 export var terminal_v = 800
 export var knockback_taken = 500 #this will be an x direction impulse
@@ -46,6 +47,7 @@ func quantize(var input, var unit):
 
 func _physics_process(delta):
 	var grounded = is_on_floor()
+	$AnimationTree["parameters/conditions/grounded"] = grounded
 	gravity = 40
 	direction = 0
 	velocity_x = 0
@@ -59,13 +61,18 @@ func _physics_process(delta):
 			excess_x -= air_resistance * excess_direction
 	get_input(grounded)
 	velocity_x = (direction * run_speed) + excess_x
+	
 	#if in attack, can't move
 	if attacking:
 		if grounded:
 			jump = false
-		else:
-			if velocity_y > 0:
+			if state_machine.get_current_node() == "attack_downpound": #cant move if finishing groundpound
+				velocity_x = 0
+		else: #slow down character on attack in air
+			if velocity_y > 0 and state_machine.get_current_node() != "attack_airdown":
 				gravity = 10
+			elif state_machine.get_current_node() == "attack_airdown":
+				velocity_x = 0
 
 	move_and_slide(Vector2(velocity_x, velocity_y), Vector2(0, -1))
 		
@@ -84,18 +91,25 @@ func get_input(grounded):
 	var current = state_machine.get_current_node()
 	
 	#left and right and jump movement
-	if Input.is_action_pressed(player + "_move_left"):
+	if Input.is_action_pressed(player + "move_left"):
 		direction = -1
-	if Input.is_action_pressed(player + "_move_right"):
+	if Input.is_action_pressed(player + "move_right"):
 		direction = 1
-	if Input.is_action_just_pressed(player + "_jump"):
+	if Input.is_action_just_pressed(player + "jump"):
 		jump = true
 	direction_in_x(direction)
+	
+	#dash
+	if Input.is_action_just_pressed(player + "dash"):
+		excess_x = 250 * direction
+		$AnimationPlayer.play("flash")
+		$Hurtbox.monitoring = false
+		$DashTimer.start()
 
 	#attacks
 	if not current.begins_with("attack"):
 		attacking = false
-		if Input.is_action_just_pressed(player + "_light_attack"):
+		if Input.is_action_just_pressed(player + "light_attack"):
 			if grounded:
 				if direction == 0:
 					incr_combo()
@@ -103,15 +117,18 @@ func get_input(grounded):
 				if direction != 0:
 					incr_combo()
 					state_machine.travel("attack_3")
-					excess_x = 350 * direction #lunge
 			else:
+				incr_combo()
 				state_machine.travel("attack_air")
-		if Input.is_action_just_pressed(player + "_heavy_attack"):
+		if Input.is_action_just_pressed(player + "heavy_attack"):
 			if grounded:
 				incr_combo()
 				state_machine.travel("attack_2")
 			else:
-				state_machine.travel("attack_air")
+				incr_combo()
+				state_machine.travel("attack_airdown")
+				if velocity_y < 0:
+					velocity_y = 0
 	else:
 		attacking = true
 
@@ -135,7 +152,12 @@ func gotHurt(var resultantDirection):
 	excess_x = knockback_taken * resultantDirection.x
 	velocity_y += knockback_taken * resultantDirection.y
 	state_machine.travel("flash")
+	$AnimationPlayer.play("flash")
 	health -= 5
 	print(health)
 	print(self.name)
+	print(state_machine.get_current_node())
+
+#handles sound effects
+func gotHit():
 	print(state_machine.get_current_node())
